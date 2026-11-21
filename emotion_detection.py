@@ -19,4 +19,13 @@ response = requests.post(
     timeout=30
 )
 
-return response.text
+result = json.loads(response.text)
+emotions = result["emotionPredictions"][0]["emotion"]
+
+return {
+    "anger": emotions["anger"],
+    "disgust": emotions["disgust"],
+    "fear": emotions["fear"],
+    "joy": emotions["joy"],"sadness": emotions["sadness"],
+    "sadness": emotions["sadness"]
+}
